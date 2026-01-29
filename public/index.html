@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Tavla</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-screen" style="position: absolute; background: rgba(0,0,0,0.8); width:100%; height:100%; display:flex; justify-content:center; align-items:center; z-index:999;">
+        <div style="background: white; padding: 40px; border-radius: 10px; text-align: center;">
+            <h1>Tavla Online</h1>
+            <input type="text" id="usernameInput" placeholder="Kullanıcı Adı" style="padding:10px; margin:5px;">
+            <br>
+            <input type="text" id="roomInput" placeholder="Oda İsmi (örn: oda1)" style="padding:10px; margin:5px;">
+            <br><br>
+            <button onclick="joinRoom()" style="padding:10px 20px; cursor:pointer;">OYUNA GİR</button>
+        </div>
+    </div>
+
+    <div class="game-container" style="display: none;">
+        <div style="position: absolute; top: -40px; width: 100%; display: flex; justify-content: space-between;">
+            <div id="player-black" class="player-info">Siyah: Bekleniyor...</div>
+        </div>
+
+        <div class="board-half top">
+            <div class="quadrant" id="quad1">
+                <div class="point" id="point-11"></div> <div class="point" id="point-10"></div>
+                <div class="point" id="point-9"></div>  <div class="point" id="point-8"></div>
+                <div class="point" id="point-7"></div>  <div class="point" id="point-6"></div>
+            </div>
+            <div class="bar" id="bar-top"></div>
+            <div class="quadrant" id="quad2">
+                <div class="point" id="point-5"></div>  <div class="point" id="point-4"></div>
+                <div class="point" id="point-3"></div>  <div class="point" id="point-2"></div>
+                <div class="point" id="point-1"></div>  <div class="point" id="point-0"></div>
+            </div>
+        </div>
+
+        <div class="middle-area">
+            <div id="turn-display">Sıra: -</div>
+            
+            <div class="controls">
+                <button id="btn-roll" onclick="visualRollDice()">ZAR AT</button>
+                <button id="btn-undo" onclick="undoMove()" style="display:none; background-color: #e74c3c; color:white;">BAŞA DÖN</button>
+                <button id="btn-pass" onclick="passTurn()" style="display:none; background-color: #95a5a6;">PAS GEÇ</button>
+            </div>
+
+            <div id="dice-display" style="font-size: 20px; font-weight: bold;">Zarlar: -</div>
+        </div>
+
+        <div class="board-half bottom">
+            <div class="quadrant" id="quad3">
+                <div class="point" id="point-12"></div> <div class="point" id="point-13"></div>
+                <div class="point" id="point-14"></div> <div class="point" id="point-15"></div>
+                <div class="point" id="point-16"></div> <div class="point" id="point-17"></div>
+            </div>
+            <div class="bar" id="bar-bottom"></div>
+            <div class="quadrant" id="quad4">
+                <div class="point" id="point-18"></div> <div class="point" id="point-19"></div>
+                <div class="point" id="point-20"></div> <div class="point" id="point-21"></div>
+                <div class="point" id="point-22"></div> <div class="point" id="point-23"></div>
+            </div>
+        </div>
+
+        <div style="position: absolute; bottom: -40px; width: 100%; display: flex; justify-content: space-between;">
+            <div id="player-white" class="player-info">Beyaz: Bekleniyor...</div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="tavla.js"></script>
+</body>
+</html>
